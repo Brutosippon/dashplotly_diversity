@@ -22,7 +22,7 @@ Live Space: https://huggingface.co/spaces/brutos/reprodash
 
 ## Quick start
 ```bash
-cd /home/brutos/Documents/work/project_dashplotly_diversity
+cd work/project_dashplotly_diversity
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
