@@ -147,7 +147,6 @@ label {
 
 .dropdown, .rangeslider {
     margin-bottom: 12px;
-    width: %;
     z-index: 1;
 }
 
@@ -167,7 +166,10 @@ label {
     color: #f8fafc !important;
 }
 
-.dash-core-components .Select-menu-outer {
+/* ===== DASH DROPDOWN (MENU + OPTIONS) ===== */
+
+.dash-dropdown .Select-menu-outer,
+.dropdown .Select-menu-outer {
     background: #050915;
     color: #f8fafc;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -175,34 +177,42 @@ label {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
-.dash-core-components .Select-option {
+.dash-dropdown .Select-option,
+.dropdown .Select-option {
     color: #f8fafc;
     background: #050915;
 }
 
-.dash-core-components .Select-option.is-focused {
+.dash-dropdown .Select-option.is-focused,
+.dropdown .Select-option.is-focused {
     background: rgba(34, 197, 94, 0.22);
 }
 
-.dash-core-components .Select-option.is-selected {
-    background: rgba(59, 130, 246, 0.22);
+.dash-dropdown .Select-option.is-selected,
+.dropdown .Select-option.is-selected {
+    background: rgba(59, 130, 246, 0.28);
 }
 
-.dash-core-components .Select-placeholder {
+.dash-dropdown .Select-placeholder,
+.dropdown .Select-placeholder {
     color: #94a3b8 !important;
 }
 
-.dash-core-components .Select-input > input {
+.dash-dropdown .Select-input > input,
+.dropdown .Select-input > input {
     color: #e5e7eb !important;
 }
 
-.dash-core-components .Select-arrow {
+.dash-dropdown .Select-arrow,
+.dropdown .Select-arrow {
     border-color: #e5e7eb transparent transparent;
 }
 
-.dash-core-components .Select-clear-zone:hover {
+.dash-dropdown .Select-clear-zone:hover,
+.dropdown .Select-clear-zone:hover {
     color: #22c55e;
 }
+/* ===== DASH RANGESLIDER ===== */
 
 .dash-core-components .rc-slider-track {
     background: #22c55e;
