@@ -28,6 +28,9 @@ def layout() -> html.Div:
     countries = list_countries()
     min_year = int(df["year"].min())
     max_year = int(df["year"].max())
+    year_marks = {y: str(y) for y in range(min_year, max_year + 1, 10)}
+    year_marks[min_year] = str(min_year)
+    year_marks[max_year] = str(max_year)
     return html.Div(
         [
             html.H2("Fertility dashboard (proxy for reproduction)"),
@@ -41,6 +44,7 @@ def layout() -> html.Div:
                         value="World",
                         persistence=True,
                         persistence_type="local",
+                        style={"width": "100%"},
                     ),
                     html.Label("Year range"),
                     dcc.RangeSlider(
@@ -50,6 +54,7 @@ def layout() -> html.Div:
                         max=max_year,
                         value=[min_year, max_year],
                         step=1,
+                        marks=year_marks,
                         allowCross=False,
                         persistence=True,
                         persistence_type="session",

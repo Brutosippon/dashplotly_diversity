@@ -7,7 +7,7 @@ from utils.logging_utils import get_logger, setup_logging
 
 logger = setup_logging()
 
-NAV_TABS = [
+NAV_LINKS = [
     {"label": "Dashboard", "path": "/"},
     {"label": "Data table", "path": "/table"},
 ]
@@ -26,26 +26,17 @@ def layout() -> html.Div:
                 children=[
                     html.H1("Reproduction / Fertility analytics"),
                     html.Div(
+                        id="main-nav",
                         className="tabs-wrapper",
-                        children=dcc.Tabs(
-                            id="main-tabs",
-                            value="/",
-                            className="dash-tabs",
-                            children=[
-                                dcc.Tab(
-                                    label=tab["label"],
-                                    value=tab["path"],
-                                    className="dash-tab",
-                                    selected_className="dash-tab--selected",
-                                    children=html.A(
-                                        tab["label"],
-                                        href=tab["path"],
-                                        className="tab-link",
-                                    ),
-                                )
-                                for tab in NAV_TABS
-                            ],
-                        ),
+                        children=[
+                            dcc.Link(
+                                link["label"],
+                                href=link["path"],
+                                id=f"nav-{link['path'].strip('/') or 'home'}",
+                                className="nav-link",
+                            )
+                            for link in NAV_LINKS
+                        ],
                     ),
                     dash.page_container,
                 ],
@@ -57,11 +48,17 @@ def layout() -> html.Div:
 app.layout = layout
 
 
-@app.callback(Output("main-tabs", "value"), Input("url", "pathname"))
-def _url_to_tabs(pathname: str) -> str:
-    if pathname not in {"/", "/table"}:
-        return "/"
-    return pathname
+@app.callback(
+    Output("nav-home", "className"),
+    Output("nav-table", "className"),
+    Input("url", "pathname"),
+)
+def _highlight_nav(pathname: str) -> tuple[str, str]:
+    active = "nav-link nav-link--active"
+    inactive = "nav-link"
+    if pathname == "/table":
+        return inactive, active
+    return active, inactive
 
 
 if __name__ == "__main__":
