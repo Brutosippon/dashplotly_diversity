@@ -1,0 +1,31 @@
+# Python / Dash project ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+env/
+venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment / tooling
+.DS_Store
+.idea/
+.vscode/
+
+# Build / coverage artifacts
+htmlcov/
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+*.log
+
+# Local data backups
+*.bak

@@ -1,0 +1,22 @@
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0 12px 24px;
+}
+
+h1, h2 {
+    color: #1f2a44;
+}
+
+.kpi-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+    min-width: 180px;
+}
+
+.ag-theme-alpine {
+    --ag-background-color: #ffffff;
+}
