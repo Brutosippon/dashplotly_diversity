@@ -13,6 +13,7 @@ NAV_LINKS = [
 ]
 
 app: Dash = Dash(__name__, use_pages=True, suppress_callback_exceptions=True)
+server = app.server
 app.title = "Dash fertility app - charts & AG Grid"
 
 
@@ -63,4 +64,5 @@ def _highlight_nav(pathname: str) -> tuple[str, str]:
 
 if __name__ == "__main__":
     logger.info("Starting Dash app server...")
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run_server(host="0.0.0.0", port=7860, debug=True)
