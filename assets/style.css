@@ -1,22 +1,211 @@
 body {
-    font-family: "Open Sans", Arial, sans-serif;
-    background: #f5f6fa;
+    font-family: "Inter", "Open Sans", Arial, sans-serif;
+    background: #020617;
+    color: #e5e7eb;
     margin: 0;
-    padding: 0 12px 24px;
+    padding: 0;
+}
+
+.app-shell {
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.04), transparent 35%),
+                radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.04), transparent 30%),
+                #0b1120;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
 }
 
 h1, h2 {
-    color: #1f2a44;
+    color: #e5e7eb;
+    text-align: center;
+    margin: 0 0 16px;
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.tabs-wrapper {
+    margin: 8px 0 24px;
+}
+
+.dash-tabs {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dash-tab {
+    color: #cbd5e1;
+    background: transparent;
+    border: none;
+    padding: 12px 18px;
+    font-weight: 600;
+}
+
+.dash-tab--selected {
+    color: #22c55e;
+    border-bottom: 2px solid #22c55e;
+    background: rgba(34, 197, 94, 0.08);
+}
+
+.tab-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.controls-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    max-width: 540px;
+    margin: 0 auto 20px;
+}
+
+label {
+    color: #cbd5e1;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.kpi-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .kpi-card {
-    background: white;
-    border-radius: 8px;
-    padding: 12px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-    min-width: 180px;
+    background: linear-gradient(145deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0.04));
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    min-width: 200px;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #e5e7eb;
 }
 
-.ag-theme-alpine {
-    --ag-background-color: #ffffff;
+.kpi-card div:first-child {
+    color: #9ca3af;
+    margin-bottom: 6px;
+}
+
+.graph-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    margin-bottom: 20px;
+}
+
+.ag-theme-alpine-dark {
+    --ag-background-color: #0b1120;
+    --ag-odd-row-background-color: #0f172a;
+    --ag-header-foreground-color: #e5e7eb;
+    --ag-foreground-color: #e5e7eb;
+    --ag-border-color: #111827;
+    --ag-header-background-color: #0f172a;
+    --ag-row-hover-color: rgba(34, 197, 94, 0.08);
+    --ag-selected-row-background-color: rgba(59, 130, 246, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.ag-theme-alpine-dark .ag-root-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ag-theme-alpine-dark .ag-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ag-theme-alpine-dark .ag-cell {
+    border-color: rgba(255, 255, 255, 0.04);
+}
+
+.dropdown, .rangeslider {
+    margin-bottom: 12px;
+}
+
+.dropdown .Select-control {
+    background: #0b1224;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e5e7eb;
+}
+
+.dropdown .Select-value-label {
+    color: #e5e7eb !important;
+}
+
+.dash-core-components .Select-menu-outer {
+    background: #0b1224;
+    color: #e5e7eb;
+}
+
+.dash-core-components .Select-option {
+    color: #e5e7eb;
+}
+
+.dash-core-components .Select-option.is-focused {
+    background: rgba(34, 197, 94, 0.16);
+}
+
+.dash-core-components .rc-slider-track {
+    background: #22c55e;
+}
+
+.dash-core-components .rc-slider-handle {
+    border-color: #22c55e;
+    background: #0b1224;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+}
+
+.dash-core-components .rc-slider-rail {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 16px 14px 32px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .controls-panel {
+        padding: 14px;
+    }
+
+    .kpi-card {
+        min-width: 160px;
+        width: 100%;
+    }
+
+    .graph-wrapper {
+        padding: 4px;
+    }
 }

@@ -12,6 +12,9 @@ from utils.chart_utils import (
     fertility_evolution_figure,
     fertility_kpis,
 )
+from utils.logging_utils import get_logger, log_exceptions
+
+logger = get_logger()
 
 try:
     dash.register_page(__name__, path="/", name="Home")
@@ -33,6 +36,7 @@ def layout() -> html.Div:
                     html.Label("Country"),
                     dcc.Dropdown(
                         id="home-country-dropdown",
+                        className="dropdown",
                         options=[{"label": c, "value": c} for c in countries],
                         value="World",
                         persistence=True,
@@ -41,6 +45,7 @@ def layout() -> html.Div:
                     html.Label("Year range"),
                     dcc.RangeSlider(
                         id="home-year-range",
+                        className="rangeslider",
                         min=min_year,
                         max=max_year,
                         value=[min_year, max_year],
@@ -50,11 +55,11 @@ def layout() -> html.Div:
                         persistence_type="session",
                     ),
                 ],
-                style={"maxWidth": "480px"},
+                className="controls-panel",
             ),
             html.Div(
                 id="home-kpi-row",
-                style={"display": "flex", "gap": "16px", "marginTop": "16px"},
+                className="kpi-row",
                 children=[
                     html.Div(
                         [html.Div("Current fertility"), html.Div(id="home-kpi-now")],
@@ -66,8 +71,8 @@ def layout() -> html.Div:
                     ),
                 ],
             ),
-            dcc.Graph(id="home-evolution-graph"),
-            dcc.Graph(id="home-distribution-graph"),
+            html.Div(dcc.Graph(id="home-evolution-graph"), className="graph-wrapper"),
+            html.Div(dcc.Graph(id="home-distribution-graph"), className="graph-wrapper"),
         ]
     )
 
@@ -80,6 +85,7 @@ def layout() -> html.Div:
     Input("home-country-dropdown", "value"),
     Input("home-year-range", "value"),
 )
+@log_exceptions(logger)
 def update_home_page(country: str, year_range: Tuple[int, int]):
     df = load_fertility()
     df_country = df[

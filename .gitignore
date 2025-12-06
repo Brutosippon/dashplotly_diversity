@@ -27,5 +27,8 @@ coverage.xml
 .hypothesis/
 *.log
 
+# Logs
+logs/
+
 # Local data backups
 *.bak

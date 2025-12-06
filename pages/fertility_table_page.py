@@ -9,6 +9,9 @@ import dash_ag_grid as dag
 
 from utils.data_utils import load_fertility, list_countries
 from utils.grid_utils import fertility_column_defs, fertility_row_data
+from utils.logging_utils import get_logger, log_exceptions
+
+logger = get_logger()
 
 try:
     dash.register_page(__name__, path="/table", name="Fertility table")
@@ -29,6 +32,7 @@ def layout() -> html.Div:
                     html.Label("Country"),
                     dcc.Dropdown(
                         id="table-country-dropdown",
+                        className="dropdown",
                         options=[{"label": c, "value": c} for c in countries],
                         value="World",
                         persistence=True,
@@ -38,6 +42,7 @@ def layout() -> html.Div:
                     html.Label("Year range"),
                     dcc.RangeSlider(
                         id="table-year-range",
+                        className="rangeslider",
                         min=min_year,
                         max=max_year,
                         value=[min_year, max_year],
@@ -47,14 +52,19 @@ def layout() -> html.Div:
                         persistence_type="session",
                     ),
                 ],
-                style={"maxWidth": "520px"},
+                className="controls-panel",
             ),
             dag.AgGrid(
                 id="fertility-ag-grid",
                 columnDefs=fertility_column_defs(),
                 rowData=[],
-                className="ag-theme-alpine",
-                style={"height": 500, "width": "100%", "marginTop": "16px"},
+                className="ag-theme-alpine-dark",
+                style={
+                    "height": 500,
+                    "width": "100%",
+                    "marginTop": "16px",
+                    "overflow": "hidden",
+                },
                 defaultColDef={"resizable": True, "sortable": True, "filter": True},
             ),
         ]
@@ -66,6 +76,7 @@ def layout() -> html.Div:
     Input("table-country-dropdown", "value"),
     Input("table-year-range", "value"),
 )
+@log_exceptions(logger)
 def update_ag_grid(country: str, year_range: Tuple[int, int]):
     df = load_fertility()
     df_country = df[

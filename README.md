@@ -24,10 +24,14 @@ The app runs at http://127.0.0.1:8050/ with two tabs (dashboard and data table /
 - `utils/data_utils.py` — CSV loader + country list
 - `utils/chart_utils.py` — figures + KPI helpers
 - `utils/grid_utils.py` — AG Grid column/row helpers
+- `utils/logging_utils.py` — logging setup + callback exception helper
 - `assets/style.css` — basic styling
 - `requirements.txt` — minimal deps
 
 ## Notes
+- Dark theme applied across charts, controls, and AG Grid (ag-theme-alpine-dark).
+- Plotly uses the `plotly_dark` template globally.
 - Year sliders auto-range from the CSV min/max.
 - Page registration is guarded so modules can be imported outside a running Dash app.
+- Logging writes to `logs/app.log` (file + console handlers). To rotate/clear, delete the file or add rotation as needed.
 - To update data, replace `data/children-per-woman-un.csv` with the latest from OWID.
